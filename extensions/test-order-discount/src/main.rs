@@ -15,7 +15,7 @@ fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::E
     let config: input::Configuration = input.configuration();
     let cart_lines = input.cart.lines;
 
-    if cart_lines.is_empty() || config.percentage == 0.0 {
+    if cart_lines.is_empty() {
         return Ok(FunctionResult {
             discounts: vec![],
             discount_application_strategy: DiscountApplicationStrategy::First,
@@ -44,7 +44,7 @@ fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::E
             message: None,
             conditions: None,
             targets,
-            value: Value::Percentage(Percentage { value: config.percentage }),
+            value: Value::FixedAmount(FixedAmount { amount: config.percentage }),
         }],
         discount_application_strategy: DiscountApplicationStrategy::First,
     })

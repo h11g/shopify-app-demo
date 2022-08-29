@@ -30,7 +30,7 @@ import { useAuthenticatedFetch } from "../../hooks";
 const todaysDate = new Date();
 const METAFIELD_NAMESPACE = "YOUR_NAMESPACE";
 const METAFIELD_CONFIGURATION_KEY = "volume-config";
-const FUNCTION_ID = "3f77f9d8-527f-46e3-9bd5-a1efb10308a0";
+const FUNCTION_ID = "01GBKXJCTKVZW2V1RFB87CTFCM";
 
 export default function VolumeNew() {
   const app = useAppBridge();

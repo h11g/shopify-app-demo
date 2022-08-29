@@ -30,7 +30,7 @@ import { useAuthenticatedFetch } from "../../hooks";
 const todaysDate = new Date();
 const METAFIELD_NAMESPACE = "YOUR_NAMESPACE";
 const METAFIELD_CONFIGURATION_KEY = "volume-config";
-const FUNCTION_ID = "b5e42147-3a8c-49ee-8162-ae85485bd3ae";
+const FUNCTION_ID = "01GBMKNDYVKFYR4JEAZAG9N81Y";
 
 export default function VolumeNew() {
   const app = useAppBridge();
@@ -89,8 +89,8 @@ export default function VolumeNew() {
         endsAt: form.endDate,
         metafields: [
           {
-            namespace: 'default',
-            key: 'function-configuration',
+            namespace: 'order-discount',
+            key: 'percentage',
             type: 'json',
             value: JSON.stringify({
               quantity: parseInt(form.configuration.quantity),
@@ -152,7 +152,7 @@ export default function VolumeNew() {
 
   return (
     <Page
-      title="Create volume discount"
+      title="Create order discount"
       breadcrumbs={[
         {
           content: "Discounts",

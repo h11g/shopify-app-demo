@@ -28,7 +28,7 @@ export default function App() {
                     },
                     {
                       label: 'New test order discount',
-                      destination: '/order-discount/new'
+                      destination: '/TestOrderDiscount/new'
                     }
                   ]}
               />

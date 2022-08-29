@@ -7,6 +7,6 @@ command = "cargo wasi build --release"
 path = "target/wasm32-wasi/release/testorderdiscount.wasm"
 
 [ui.paths]
-create = "/order-discount/new"
-details = "/voluorder-discountme/:id" # Note that this isn't implemented in this tutorial
+create = "/testOrderDiscount/new"
+details = "/testOrderDiscount/:id" # Note that this isn't implemented in this tutorial
 

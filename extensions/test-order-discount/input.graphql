@@ -1,6 +1,6 @@
 query Input {
   discountNode {
-    metafield(namespace: "default", key: "function-configuration") {
+    metafield(namespace: "order-discount", key: "percentage") {
       value
     }
   }

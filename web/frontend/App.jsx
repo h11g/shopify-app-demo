@@ -25,6 +25,10 @@ export default function App() {
                     {
                       label: 'New volume discount',
                       destination: '/Volume/new'
+                    },
+                    {
+                      label: 'New test order discount',
+                      destination: '/order-discount/new'
                     }
                   ]}
               />

@@ -138,6 +138,36 @@ export async function createServer(
   // attribute, as a result of the express.json() middleware
   app.use(express.json());
 
+  const runDiscountMutation = async (req, res, mutation) => {
+    const session = await Shopify.Utils.loadCurrentSession(
+      req,
+      res,
+      app.get("use-online-tokens")
+    );
+
+    const client = new Shopify.Clients.Graphql(
+      session?.shop,
+      session?.accessToken
+    );
+
+    const data = await client.query({
+      data: {
+        query: mutation,
+        variables: { discount: req.body },
+      },
+    });
+
+    res.send(data.body);
+  };
+
+  app.post("/api/discounts/code", async (req, res) => {
+    await runDiscountMutation(req, res, CREATE_CODE_MUTATION);
+  });
+
+  app.post("/api/discounts/automatic", async (req, res) => {
+    await runDiscountMutation(req, res, CREATE_AUTOMATIC_MUTATION);
+  });
+
   app.use((req, res, next) => {
     const shop = Shopify.Utils.sanitizeShop(req.query.shop);
     if (Shopify.Context.IS_EMBEDDED_APP && shop) {
@@ -190,5 +220,30 @@ export async function createServer(
 
   return { app };
 }
+
+const CREATE_CODE_MUTATION = `
+  mutation CreateCodeDiscount($discount: DiscountCodeAppInput!) {
+    discountCreate: discountCodeAppCreate(codeAppDiscount: $discount) {
+      userErrors {
+        code
+        message
+        field
+      }
+    }
+  }
+`;
+const CREATE_AUTOMATIC_MUTATION = `
+  mutation CreateAutomaticDiscount($discount: DiscountAutomaticAppInput!) {
+    discountCreate: discountAutomaticAppCreate(
+      automaticAppDiscount: $discount
+    ) {
+      userErrors {
+        code
+        message
+        field
+      }
+    }
+  }
+`;
 
 createServer().then(({ app }) => app.listen(PORT));

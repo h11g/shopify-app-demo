@@ -4,6 +4,7 @@ import Routes from "./Routes";
 
 import {
   AppBridgeProvider,
+  DiscountProvider,
   QueryProvider,
   PolarisProvider,
 } from "./components";
@@ -17,17 +18,19 @@ export default function App() {
     <PolarisProvider>
       <BrowserRouter>
         <AppBridgeProvider>
-          <QueryProvider>
-            <NavigationMenu
-              navigationLinks={[
-                {
-                  label: "Page name",
-                  destination: "/pagename",
-                },
-              ]}
-            />
-            <Routes pages={pages} />
-          </QueryProvider>
+          <DiscountProvider>
+            <QueryProvider>
+              <NavigationMenu
+                  navigationLinks={[
+                    {
+                      label: 'New volume discount',
+                      destination: '/Volume/new'
+                    }
+                  ]}
+              />
+              <Routes pages={pages} />
+            </QueryProvider>
+          </DiscountProvider>
         </AppBridgeProvider>
       </BrowserRouter>
     </PolarisProvider>

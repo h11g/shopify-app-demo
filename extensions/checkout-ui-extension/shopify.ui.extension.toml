@@ -1,0 +1,16 @@
+type = "checkout_ui"
+name = "checkout-ui-extension"
+
+
+extension_points = [
+  'Checkout::Dynamic::Render',
+  'Checkout::CartLines::RenderAfter'
+]
+
+# [[metafields]]
+# namespace = "my-namespace"
+# key = "my-key"
+
+# [[metafields]]
+# namespace = "my-namespace"
+# key = "my-key-2"

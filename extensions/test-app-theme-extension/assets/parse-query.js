@@ -1,10 +1,23 @@
 (function() {
   const search = window.location.search
-  console.log('%c [ search ]', 'font-size:13px; background:pink; color:#bf2c9f;', search)
   window.returnsQueryParams = new URLSearchParams(search)
 
-  const checkoutBtn = document.querySelector('#checkout')
-  checkoutBtn.onclick = function() {
+  window.extra_credit = window.returnsQueryParams.get('extra_credit')
 
+  if(window.extra_credit) {
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        attributes: {
+            'extra_credit': window.extra_credit
+        }
+      })
+    }).then(response => {
+      return response.json();
+    }).catch((error) => {
+    });
   }
 })()

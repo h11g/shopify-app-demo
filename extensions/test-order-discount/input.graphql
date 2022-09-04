@@ -1,17 +1,21 @@
-query Input {
-  discountNode {
-    metafield(namespace: "order-discount", key: "percentage") {
-      value
+  query Input {
+    discountNode {
+      metafield(namespace: "order-discount", key: "percentage") {
+        value
+      }
     }
-  }
-  cart {
-    lines {
-      quantity
-      merchandise {
-        ...on ProductVariant {
-          id
+    cart {
+      attribute(key: "extra_credit") {
+        key
+        value
+      }
+      lines {
+        quantity
+        merchandise {
+          ...on ProductVariant {
+            id
+          }
         }
       }
     }
   }
-}

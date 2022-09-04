@@ -14,6 +14,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::Error>> {
     let config: input::Configuration = input.configuration();
     let cart_lines = input.cart.lines;
+    let attribute = input.cart.attribute;
 
     if cart_lines.is_empty() {
         return Ok(FunctionResult {
@@ -44,7 +45,7 @@ fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::E
             message: None,
             conditions: None,
             targets,
-            value: Value::FixedAmount(FixedAmount { amount: config.percentage }),
+            value: Value::FixedAmount(FixedAmount { amount: attribute.value.parse::<f64>().unwrap() }),
         }],
         discount_application_strategy: DiscountApplicationStrategy::First,
     })
